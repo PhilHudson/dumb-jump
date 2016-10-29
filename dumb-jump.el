@@ -38,14 +38,43 @@
   :group 'tools
   :group 'convenience)
 
+(defcustom dumb-jump-go-key-binding
+  "C-M-g"
+  "Key binding for command `dumb-jump-go'."
+  :group 'dumb-jump
+  :type key-sequence
+  :set 'dumb-jump-change-key-binding)
+
+(defcustom dumb-jump-back-key-binding
+  "C-M-p"
+  "Key binding for command `dumb-jump-go'."
+  :group 'dumb-jump
+  :type key-sequence
+  :set 'dumb-jump-change-key-binding)
+
+(defcustom dumb-jump-quick-look-key-binding
+  "C-M-q"
+  "Key binding for command `dumb-jump-quick-look'."
+  :group 'dumb-jump
+  :type key-sequence
+  :set 'dumb-jump-change-key-binding)
+
 ;;;###autoload
-(defvar dumb-jump-mode-map
+(defun dumb-jump-build-mode-map ()
+  "(Re-)build the keymap for `dumb-jump-mode'."
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-M-g") 'dumb-jump-go)
-    (define-key map (kbd "C-M-p") 'dumb-jump-back)
-    (define-key map (kbd "C-M-q") 'dumb-jump-quick-look)
+    (define-key map dumb-jump-go-key-binding 'dumb-jump-go)
+    (define-key map dumb-jump-back-key-binding 'dumb-jump-back)
+    (define-key map dumb-jump-quick-look-key-binding 'dumb-jump-quick-look)
     map))
 
+;;;###autoload
+(defvar dumb-jump-mode-map (dumb-jump-build-mode-map))
+
+(defun dumb-jump-change-key-binding (binding-var binding)
+  (set-default binding-var binding)
+  (setq dumb-jump-mode-map (dumb-jump-build-mode-map)))
+  
 (defcustom dumb-jump-window
   'current
   "Which window to use when jumping valid options are 'current (default) or 'other."
