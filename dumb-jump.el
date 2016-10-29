@@ -39,21 +39,21 @@
   :group 'convenience)
 
 (defcustom dumb-jump-go-key-binding
-  "C-M-g"
+  (kbd "C-M-g")
   "Key binding for command `dumb-jump-go'."
   :group 'dumb-jump
   :type 'key-sequence
   :set 'dumb-jump-change-key-binding)
 
 (defcustom dumb-jump-back-key-binding
-  "C-M-p"
+  (kbd "C-M-p")
   "Key binding for command `dumb-jump-go'."
   :group 'dumb-jump
   :type 'key-sequence
   :set 'dumb-jump-change-key-binding)
 
 (defcustom dumb-jump-quick-look-key-binding
-  "C-M-q"
+  (kbd "C-M-q")
   "Key binding for command `dumb-jump-quick-look'."
   :group 'dumb-jump
   :type 'key-sequence
