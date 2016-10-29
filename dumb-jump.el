@@ -63,9 +63,12 @@
 (defun dumb-jump-build-mode-map ()
   "(Re-)build the keymap for `dumb-jump-mode'."
   (let ((map (make-sparse-keymap)))
-    (define-key map dumb-jump-go-key-binding 'dumb-jump-go)
-    (define-key map dumb-jump-back-key-binding 'dumb-jump-back)
-    (define-key map dumb-jump-quick-look-key-binding 'dumb-jump-quick-look)
+    (when (boundp 'dumb-jump-go-key-binding)
+      (define-key map dumb-jump-go-key-binding 'dumb-jump-go))
+    (when (boundp 'dumb-jump-back-key-binding)
+      (define-key map dumb-jump-back-key-binding 'dumb-jump-back))
+    (when (boundp 'dumb-jump-quick-look-key-binding)
+      (define-key map dumb-jump-quick-look-key-binding 'dumb-jump-quick-look))
     map))
 
 ;;;###autoload
